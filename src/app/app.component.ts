@@ -9,7 +9,19 @@ import { Component } from '@angular/core';//importing the decorator which I need
     <p><i>{{name}}</i> is in {{region}} region.</p>
     
     <br/>
-    <button (click)="addressClick()">Show/Hide address</button>
+
+    <fieldset>
+
+    <label>Name:</label><br/>
+
+    <input [value]="name"><br/>
+    <input [value]="name"><br/>
+
+    <input [value]="name" (input)="name=$event.target.value"><br/>
+    <input [value]="name" (keyup.enter)="name=$event.target.value"><br/>
+    </fieldset>
+
+    <label><input type="checkbox" [(ngModel)]="hideAddress">Hide Address</label>
 
     <div [hidden]="hideAddress">
     <fieldset>
