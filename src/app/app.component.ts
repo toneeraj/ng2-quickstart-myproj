@@ -1,61 +1,14 @@
-import { Component } from '@angular/core';//importing the decorator which I need
+import { Component } from '@angular/core';
 
-//Using the decorator by the name @Component. 
-@Component({
-  selector: 'my-app', //this is what that will be shown in the html tag. it is like css selector as in jquery.
-  template: `
-    <h1>{{name}}</h1>
-       
-    <p><i>{{name}}</i> is in {{region}} region.</p>
+@Component( {
+    moduleId: module.id,
+    selector: 'my-app',
+    template: `
+    <h1>{{title}}</h1>
+    <customer-list></customer-list>
     
-    <br/>
-
-    <fieldset>
-
-    <label>Name:</label><br/>
-
-    <input [value]="name"><br/>
-    <input [value]="name"><br/>
-
-    <input [value]="name" (input)="name=$event.target.value"><br/>
-    <input [value]="name" (keyup.enter)="name=$event.target.value"><br/>
-    </fieldset>
-
-    <label><input type="checkbox" [(ngModel)]="hideAddress">Hide Address</label>
-
-    <div [hidden]="hideAddress">
-    <fieldset>
-      <label>Street:</label>{{street}}
-    </fieldset>
-    <fieldset>
-      <label>City:</label>{{city}}
-    </fieldset>
-    <fieldset>
-      <label>Region:</label>
-        <select (change)="regionChange($event.target.value)" >
-          <option>East</option>
-          <option>South</option>
-          <option>North</option>
-          <option>West</option>
-        </select>
-    </fieldset>
-    </div>
-    
-    `,
+    `
 })
-export class AppComponent  {
-  name = 'Alexa';
-  street = 'second street';// by default it is a public property.
-  city = 'Anytown';
-  region = '';
-  hideAddress = false;
-
-  //toggles hideAddress property
-  addressClick() {
-    this.hideAddress == false ? this.hideAddress = true : this.hideAddress = false;
-  }
-
-  regionChange(region:string) {
-    this.region = region;
-  }
+export class AppComponent {
+    title ='Customer Management';
 }
