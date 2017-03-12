@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';//importing the decorator whic
 
 import { Customer } from './model';
 import { DataService } from './data.service';
+import { LoggerService } from './logger.service';
 
 // Using the decorator by the name @Component. 
 @Component({
@@ -15,9 +16,10 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[]; //declared
   customer : Customer; //selected customer
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private loggerService: LoggerService) {}
 
   ngOnInit() {
+    this.loggerService.log('Getting customers...');
     this.customers = this.dataService.getCustomers(); //assigned
   }
 

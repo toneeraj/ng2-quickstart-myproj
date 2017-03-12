@@ -8,6 +8,7 @@ import { CustomerDetailComponent }  from './customer-detail.component';
 import { AddressComponent }  from './address.component';
 
 import {DataService} from './data.service';
+import {LoggerService} from './logger.service';
 
 //This is decorator not officially available in javascript yet
 //describes the class AppModule.
@@ -18,7 +19,7 @@ import {DataService} from './data.service';
                   CustomerDetailComponent,
                   AddressComponent 
                 ], //what things are in my app
-  providers: [ DataService] , //For services
+  providers: [ DataService, LoggerService] , //For services
   bootstrap:    [ AppComponent ]  // where do i start?
 })
 export class AppModule { }
