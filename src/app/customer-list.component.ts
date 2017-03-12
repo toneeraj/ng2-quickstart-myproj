@@ -56,5 +56,12 @@ export class CustomerListComponent  {
 
   customer : Customer; //selected customer
 
+  // gets a +1 or -1 as argument and tries to set the current selected customer index with +1 or -1
+  shift(increment : number) {
+    let ix = this.customers.findIndex( c => c ===this. customer) + increment;
+    //Used to handle - when we are in the beginning and user clicks previous or we are in the end  and user clicks next.
+    ix = Math.min(this.customers.length - 1, Math.max(0, ix));
+    this.customer = this.customers[ix];
+  }
 
 }

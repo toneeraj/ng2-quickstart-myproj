@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';//importing the decorator which I need
+import { Component, EventEmitter, Input, Output } from '@angular/core';//importing the decorator which I need
 
 import { Customer } from './model';
 
@@ -12,6 +12,13 @@ export class CustomerDetailComponent  {
 
   showAddress = true;
   @Input() customer : Customer;
+  @Output() shift = new EventEmitter<number>();
 
+  right() {
+    this.shift.emit(1);
+  }
 
+  left () {
+    this.shift.emit(-1);
+  }
 }

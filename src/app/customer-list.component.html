@@ -1,5 +1,6 @@
 <h1>Cusotmers</h1>
 <div>
+    <!-- Customer list is here -->
     <p><i>Select a customer</i></p>
     <ul>
         <li *ngFor="let cust of customers" 
@@ -10,6 +11,6 @@
     
     <!-- details begin here -->
   <div *ngIf="customer">
-    <customer-detail [customer]="customer"></customer-detail>
+    <customer-detail [customer]="customer" (shift)="shift($event)" ></customer-detail>
   </div>
 </div>

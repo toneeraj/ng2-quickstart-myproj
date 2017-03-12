@@ -2,7 +2,7 @@
     <!-- details begin here -->
 <div *ngIf="customer">
 
-   <h1>{{customer.name}}</h1>
+   <h1><button (click)="left()"><</button>{{customer.name}}<button (click) = "right()">></button></h1>
        
     <p><i>{{customer.name}}</i> is at {{customer.address.street}} in {{customer.address.city}} 
      in state {{customer.address.state}}
