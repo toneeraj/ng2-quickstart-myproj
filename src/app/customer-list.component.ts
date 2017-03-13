@@ -15,12 +15,19 @@ export class CustomerListComponent implements OnInit {
 
   customers: Customer[]; //declared
   customer: Customer; //selected customer
-
+  
   constructor(private dataService: DataService, private loggerService: LoggerService) { }
 
   ngOnInit() {
+    this.getCustomers();
+  }
+
+  getCustomers() {
     this.loggerService.log('Getting customers...');
-    this.customers = this.dataService.getCustomers(); //assigned
+    //Using promise.
+    this.dataService.getCustomers().then ( custs => {
+      this.customers = custs;
+    });
   }
 
 
