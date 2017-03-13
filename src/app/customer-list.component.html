@@ -1,7 +1,8 @@
 <h1>Cusotmers</h1>
 <div>
   <!-- Customer list is here -->
-  <p><i>Select a customer</i></p>
+  <p *ngIf="isBusy"><i>Loading customers ...</i></p>
+  <p *ngIf="!isBusy"><i>Select a customer</i></p>
   <ul>
     <li *ngFor="let cust of customers" [ngClass]="{selected: customer===cust}" (click)="customer=cust">{{cust.name}}</li>
   </ul>

@@ -15,6 +15,7 @@ export class CustomerListComponent implements OnInit {
 
   customers: Customer[]; //declared
   customer: Customer; //selected customer
+  isBusy = false;
   
   constructor(private dataService: DataService, private loggerService: LoggerService) { }
 
@@ -23,9 +24,11 @@ export class CustomerListComponent implements OnInit {
   }
 
   getCustomers() {
+    this.isBusy = true;
     this.loggerService.log('Getting customers...');
     //Using promise.
     this.dataService.getCustomers().then ( custs => {
+      this.isBusy = false;
       this.customers = custs;
     });
   }
