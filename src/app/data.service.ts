@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { createTestCustomers } from './test-data';
+import { Observable } from 'rxjs/observable';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/do';
 
+import { createTestCustomers } from './test-data';
 import { LoggerService } from './logger.service';
 import { Customer} from './model';
 
@@ -8,7 +12,7 @@ import { Customer} from './model';
 export class DataService {
 
     constructor(private loggerService: LoggerService) { }
-    getCustomers() {
+    getCustomersP(): Promise<Customer[]>  {
         this.loggerService.log(`Getting customers as a Promise ...`);
         const customers = createTestCustomers();
         
@@ -19,5 +23,15 @@ export class DataService {
                  resolve(customers);
             }, 1500);
         });
+    }
+
+    getCustomers(): Observable<Customer[]> {
+        this.loggerService.log(`Getting customers as a Observable ...`);
+        const customers = createTestCustomers();
+        return of(customers)
+            .delay(1500)
+            .do(()=> {
+              this.loggerService.log(`Got ${customers.length} customers `);   
+            });
     }
 }
