@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { createTestCustomers } from './test-data';
 import { LoggerService } from './logger.service';
@@ -19,7 +20,7 @@ export class DataService {
     constructor(private loggerService: LoggerService,
     private http : Http) { }
     getCustomersP(): Promise<Customer[]>  {
-        this.loggerService.log(`Getting customers as a Promise ...`);
+        this.loggerService.log(`Getting customers as a Promise via Http ...`);
         
         //Call http get. By default it returns observable. Calling method to convert to Promise.
         return this.http.get(this.customersUrl)
@@ -31,29 +32,18 @@ export class DataService {
         },
         error => {
             this.loggerService.log(`Error occurred: ${error}`);
-            return Promise.reject('Something bad happended. Please check the console.');
+            return Promise.reject('Something bad happended. Please check the console.')
         }
         
         );
-
-
-        
-        //Returning a promise. Need to be of Customer[]. otherwise typecast error while using it.
-        // return new Promise<Customer[]>(resolve => {
-        //     setTimeout(() => {
-        //          this.loggerService.log(`Got ${customers.length} customers `);
-        //          resolve(customers);
-        //     }, 1500);
-        // });
     }
 
     getCustomers(): Observable<Customer[]> {
-        this.loggerService.log(`Getting customers as a Observable ...`);
-        const customers = createTestCustomers();
-        return of(customers)
-            .delay(1500)
-            .do(()=> {
-              this.loggerService.log(`Got ${customers.length} customers `);   
-            });
+        this.loggerService.log(`Getting customers as a Observable via Http...`);
+        return this.http.get(this.customersUrl)
+        .map( response => response.json().data as Customer[])
+        .do((custs)=> {
+           this.loggerService.log(`Got ${custs.length} customers `);   
+         });
     }
 }
