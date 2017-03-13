@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-@Component( {
+@Component({
     moduleId: module.id,
     selector: 'my-app',
     template: `
@@ -10,5 +10,5 @@ import { Component } from '@angular/core';
     `
 })
 export class AppComponent {
-    title ='Customer Management';
+    title = 'Customer Management';
 }

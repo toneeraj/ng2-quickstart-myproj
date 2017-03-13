@@ -1,25 +1,25 @@
-    <div *ngIf="showAddress">
-    
-      <fieldset>
-        <label>Street:<input [(ngModel)]="address.street"></label><br/>
-      </fieldset>
-      
-      <fieldset>
-        <label>City:<input [(ngModel)]="address.city"></label><br/>
-      </fieldset>
-      
-      <fieldset>
-        <label>State:</label>
-          <select [(ngModel)]="address.state" >
+<div *ngIf="showAddress">
+
+  <fieldset>
+    <label>Street:<input [(ngModel)]="address.street"></label><br/>
+  </fieldset>
+
+  <fieldset>
+    <label>City:<input [(ngModel)]="address.city"></label><br/>
+  </fieldset>
+
+  <fieldset>
+    <label>State:</label>
+    <select [(ngModel)]="address.state">
             <option *ngFor="let state of states">{{state}}</option>
           </select>
-      </fieldset>
-      
-      <fieldset>
-        <label>Region:</label>
-          <select [(ngModel)]="address.region" >
+  </fieldset>
+
+  <fieldset>
+    <label>Region:</label>
+    <select [(ngModel)]="address.region">
             <option *ngFor="let region of regions">{{region}}</option>
           </select>
-      </fieldset>
-    
-    </div>
+  </fieldset>
+
+</div>

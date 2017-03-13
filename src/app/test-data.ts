@@ -1,5 +1,5 @@
 export function createTestCustomers() {
-    return [
+  return [
     {
       id: 1,
       name: 'Alex Smith',
@@ -40,6 +40,6 @@ export function createTestCustomers() {
         region: 'Midwest'
       }
     }
-  
-    ];    
+
+  ];
 }

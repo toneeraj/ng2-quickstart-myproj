@@ -1,24 +1,22 @@
-    
-    <!-- details begin here -->
+<!-- details begin here -->
 <div *ngIf="customer">
 
-   <h1><button (click)="left()"><</button>{{customer.name}}<button (click) = "right()">></button></h1>
-       
-    <p><i>{{customer.name}}</i> is at {{customer.address.street}} in {{customer.address.city}} 
-     in state {{customer.address.state}}
-     in the {{customer.address.region}} region. </p>
-    
+    <h1><button (click)="left()"><</button>{{customer.name}}<button (click)="right()">></button></h1>
+
+    <p><i>{{customer.name}}</i> is at {{customer.address.street}} in {{customer.address.city}} in state {{customer.address.state}}
+        in the {{customer.address.region}} region. </p>
+
     <br/>
 
     <fieldset>
-      <label>Name:<input [ngModel]="customer.name" (ngModelChange)= "customer.name=$event"></label><br/>
+        <label>Name:<input [ngModel]="customer.name" (ngModelChange)= "customer.name=$event"></label><br/>
     </fieldset>
 
 
     <label><input type="checkbox" [(ngModel)]="showAddress">Show Address</label>
 
     <div *ngIf="showAddress">
-        <address-comp [address] = "customer.address"></address-comp>
-    
+        <address-comp [address]="customer.address"></address-comp>
+
     </div>
 </div>
